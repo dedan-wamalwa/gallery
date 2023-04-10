@@ -19,5 +19,17 @@ pipeline{
                 sh 'curl -X POST https://api.render.com/deploy/srv-cgpgga0rddl9mmvfefbg?key=ZwgIwLKIGrU'
             }
         }
+        stage('Run Tests'){
+            steps{
+                sh 'npm test'
+            }
+            post{
+                failure{
+                    mail to: "wodongo123@gmail.com",
+                    subject: "Test Failure",
+                    body: "Test Failed"
+                }
+            }
+        }
     }
 }
