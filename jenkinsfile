@@ -30,6 +30,11 @@ pipeline{
             steps{
                 sh 'curl -X POST https://api.render.com/deploy/srv-cgpgga0rddl9mmvfefbg?key=ZwgIwLKIGrU'
             }
+            post{
+                success{
+                    slackSend channel: 'dedan-ip1', color: 'good', message: "Build ${env.BUILD_NUMBER} was succesful. Click here: https://dedan-wamalwa-gallery.onrender.com/", teamDomain: 'dedansworkspace', tokenCredentialId: '62afa143-c1ea-42bc-abf7-165b5424ba42'
+                }
+            }
         }
     }
 }
