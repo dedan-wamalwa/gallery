@@ -1,0 +1,23 @@
+pipeline{
+    agent any
+    tools{
+        nodejs "nodejs"
+    }
+    stages{
+        stage('Clone repository'){
+            steps{
+                git 'https://github.com/dedan-wamalwa/gallery'
+            }
+        }
+        stage('Install dependancies'){
+            steps{
+                sh 'npm install'
+            }
+        }
+        stage('Deploy to Render'){
+            steps{
+                sh 'curl -X POST https://api.render.com/deploy/srv-cgpgga0rddl9mmvfefbg?key=ZwgIwLKIGrU'
+            }
+        }
+    }
+}
